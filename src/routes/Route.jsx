@@ -11,13 +11,16 @@ import UserLogin from "../Pages/Shared/Users/userLogin/UserLogin";
 import AppbarAndNAvabar from "../components/Navbar/Navbar";
 import BadRequest from "../Pages/Shared/Badrequest";
 import Home from "../Pages/Shared/Home";
+import Dashboard from "../Pages/Inventory/Dashboard/Index";
 
 const Routes = () => {
-  let userType = Auth.getRoles();
-  const isAuth = Auth.isAuth();
+  // let userType = Auth.getRoles() || USER_TYPES.STUDENT;
+  let userType = USER_TYPES.STUDENT;
+  // const isAuth = Auth.isAuth() || "test";
+  const isAuth =  "test";
   const location = useLocation();
   useEffect(() => {
-    userType = Auth.getRoles();
+    userType = "Auth.getRoles()";
   }, [location]);
 
   return (
@@ -27,6 +30,14 @@ const Routes = () => {
         <Route path="/login" element={<UserLogin />} />
         {isAuth ? (
           <Route path="home/" element={<AppbarAndNAvabar />}>
+            <Route
+              path=""
+              element={
+                <Suspense fallback={<Loader />}>
+                  <PrivateRoute>{<Dashboard />}</PrivateRoute>
+                </Suspense>
+              }
+            ></Route>
             {userType === USER_TYPES.STUDENT &&
               adminRoutes.map((route) => (
                 <Route
@@ -69,6 +80,5 @@ const Routes = () => {
 Routes.propTypes = {
   userType: PropTypes.string,
 };
-
 
 export default Routes;

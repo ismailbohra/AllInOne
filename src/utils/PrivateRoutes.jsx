@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Auth from "./Auth";
 
 const PrivateRoute = ({ children }) => {
-  const auth = Auth.isAuth();
+  const auth = "Auth.isAuth()";
   return auth ? children : <Navigate to="/login" />;
 };
 

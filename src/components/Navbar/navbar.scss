@@ -1,0 +1,9 @@
+@import '../../scss/colors';
+@import '../../scss/variable';
+
+.appbar {
+    font-family: $agenda-regular;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: $green-color;
+}

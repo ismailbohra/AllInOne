@@ -6,14 +6,10 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
-import FileOpenIcon from "@mui/icons-material/FileOpen";
-import PersonIcon from "@mui/icons-material/Person";
 import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import CreateIcon from "@mui/icons-material/Create";
-import HouseIcon from "@mui/icons-material/House";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ChevronRight } from "@mui/icons-material";
 
 export default function AdminDrawerList() {
   const [open, setOpen] = React.useState(false);
@@ -36,18 +32,16 @@ export default function AdminDrawerList() {
       component="nav"
       aria-labelledby="nested-list-subheader"
       style={{
-        color: "white",
-        background: "black",
-        paddingLeft: 10,
+        color: "black",
         paddingTop: 25,
       }}
     >
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} className="listitembutton">
         <ListItemIcon>
-          <FileCopyIcon style={{ color: "white" }} />
+          <FileCopyIcon style={{ color: "black" }} />
         </ListItemIcon>
         <ListItemText primary="lms" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {open ? <ExpandLess /> : <ChevronRight />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
@@ -55,7 +49,7 @@ export default function AdminDrawerList() {
             style={
               selectedIndex === "leaveApply"
                 ? { color: "#F2B33F" }
-                : { color: "white" }
+                : { color: "black" }
             }
             sx={{ pl: 4 }}
             onClick={() => {
@@ -67,7 +61,7 @@ export default function AdminDrawerList() {
                 style={
                   selectedIndex === "leaveApply"
                     ? { color: "#F2B33F" }
-                    : { color: "white" }
+                    : { color: "black" }
                 }
               />
             </ListItemIcon>
@@ -78,7 +72,7 @@ export default function AdminDrawerList() {
             style={
               selectedIndex === "leaveChart"
                 ? { color: "#F2B33F" }
-                : { color: "white" }
+                : { color: "black" }
             }
             sx={{ pl: 4 }}
             onClick={() => {
@@ -90,7 +84,7 @@ export default function AdminDrawerList() {
                 style={
                   selectedIndex === "leaveChart"
                     ? { color: "#F2B33F" }
-                    : { color: "white" }
+                    : { color: "black" }
                 }
               />
             </ListItemIcon>
@@ -101,7 +95,7 @@ export default function AdminDrawerList() {
             style={
               selectedIndex === "facultyAssignment"
                 ? { color: "#F2B33F" }
-                : { color: "white" }
+                : { color: "black" }
             }
             sx={{ pl: 4 }}
             onClick={() => {
@@ -113,7 +107,7 @@ export default function AdminDrawerList() {
                 style={
                   selectedIndex === "facultyAssignment"
                     ? { color: "#F2B33F" }
-                    : { color: "white" }
+                    : { color: "black" }
                 }
               />
             </ListItemIcon>
