@@ -11,21 +11,14 @@ import {
   FormSelect,
 } from "react-bootstrap";
 import { Form, Formik } from "formik";
-import { INPUT_TYPES } from "../../../components/constants";
-import Input from "../../../components/Input";
-import { setUserValidation } from "../../../utils/validations";
+import { INPUT_TYPES } from "../../../../components/constants";
+import Input from "../../../../components/Input";
+import { setUserValidation } from "../../../../utils/validations";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import { userRegisterReq } from "../../../store/shared/users/UserAction";
 
 const UserRegister = (props) => {
-  const [show, setShow] = useState(true);
-
-  const handleClose = () => setShow(false);
 
   const [accountSetupForm, setAccountSetupForm] = useState({
-    userType: "",
     firstName: "",
     lastName: "",
     mobileNo: "",
@@ -35,9 +28,9 @@ const UserRegister = (props) => {
     checkBox: false,
   });
   const registerUser = (values) => {
-    // console.log(values);
-    delete values.confirmPassword;
-    props.userRegisterReq(values, successCallback);
+    console.log(values);
+    // delete values.confirmPassword;
+    // props.userRegisterReq(values, successCallback);
   };
   const successCallback = () => {
     console.log("callBack Called");
@@ -85,37 +78,10 @@ const UserRegister = (props) => {
                   errors,
                   handleBlur,
                   handleChange,
-                  handleSubmit,
-                  setFieldValue,
                 }) => {
                   return (
                     <Form>
                       <Row>
-                        <Col sm={12} xs={12} className="mb-2 mb-sm-3 mb-lg-4">
-                          <FormSelect
-                            name="userType"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.userType}
-                            className={
-                              touched.userType && errors.userType
-                                ? "is-invalid form-control"
-                                : "form-control form-select"
-                            }
-                            aria-label="Default select example"
-                          >
-                            <option key="blankChoice" hidden>
-                              Please Select User Type
-                            </option>
-                            <option value="INDUSTRY">I am Industry</option>
-                            <option value="AGENT">I am Agent</option>
-                          </FormSelect>
-                          {touched.userType && errors.userType ? (
-                            <div className="error-message">
-                              {errors.userType}
-                            </div>
-                          ) : null}
-                        </Col>
                         <Col sm={6} xs={12} className="mb-2 mb-sm-3 mb-lg-4">
                           <Input
                             error={touched.firstName && errors.firstName}
@@ -206,7 +172,7 @@ const UserRegister = (props) => {
                             }
                             id={"confirmPassword"}
                             inputClass={
-                              touched.iecNumber && errors.iecNumber
+                              touched.confirmPassword && errors.confirmPassword
                                 ? "is-invalid"
                                 : ""
                             }
@@ -269,11 +235,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userRegisterReq: bindActionCreators(userRegisterReq, dispatch),
+
 });
 
-UserRegister.propTypes = {
-  userRegisterReq: PropTypes.func,
-};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRegister);

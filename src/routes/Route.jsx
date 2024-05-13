@@ -11,6 +11,7 @@ import UserLogin from "../Pages/Shared/Users/userLogin/UserLogin";
 import AppbarAndNAvabar from "../components/Navbar/Navbar";
 import BadRequest from "../Pages/Shared/Badrequest";
 import Home from "../Pages/Shared/Home";
+import UserRegister from "../Pages/Shared/Users/userRegistration/UserRegister";
 
 const Routes = () => {
   // let userType = Auth.getRoles() || USER_TYPES.STUDENT;
@@ -27,6 +28,7 @@ const Routes = () => {
       <ReactRouterRoutes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<UserLogin />} />
+        <Route path="/register" element={<UserRegister />} />
         {isAuth ? (
           <Route path="admin/" element={<AppbarAndNAvabar />}>
             {userType === USER_TYPES.ADMIN &&
