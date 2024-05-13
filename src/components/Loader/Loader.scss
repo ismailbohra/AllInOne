@@ -2,7 +2,7 @@
 .loader {
   .spinner-border {
     height: 2rem;
-    left: 48%;
+    left: calc(48% + 140px);
     position: fixed;
     top: 50%;
     width: 2rem;

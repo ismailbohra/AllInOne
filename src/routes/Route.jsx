@@ -30,7 +30,7 @@ const Routes = () => {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/register" element={<UserRegister />} />
         {isAuth ? (
-          <Route path="admin/" element={<AppbarAndNAvabar />}>
+          <Route path="/admin" element={<AppbarAndNAvabar />}>
             {userType === USER_TYPES.ADMIN &&
               adminRoutes.map((route) => (
                 <Route

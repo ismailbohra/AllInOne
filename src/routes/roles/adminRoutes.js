@@ -33,7 +33,7 @@ const adminRoutes = [
     children: [
       {
         index:true,
-        path: "Dashboard",
+        path: "Overview",
         component: LazyComponent.Admin.Dashboard,
       },
       {
@@ -44,6 +44,11 @@ const adminRoutes = [
       {
         index:false,
         path: "Attendance",
+        component: LazyComponent.Admin.Dashboard,
+      },
+      {
+        index:false,
+        path: "Payroll",
         component: LazyComponent.Admin.Dashboard,
       },
       {

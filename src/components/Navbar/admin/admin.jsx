@@ -28,7 +28,7 @@ export default function AdminDrawerList() {
         {
           title: "Dashboard",
           icon: <AssignmentIcon />,
-          path: "/admin/inventory",
+          path: "/admin/inventory/dashboard",
         },
         {
           title: "Team",
@@ -50,31 +50,26 @@ export default function AdminDrawerList() {
     {
       title: "HRM System",
       items: [
-        { title: "Dashboard", icon: <AssignmentIcon />, path: "/admin/hrm" },
+        { title: "Overview", icon: <AssignmentIcon />, path: "/admin/hrm/overview" },
         {
           title: "Employees",
           icon: <AssignmentIcon />,
           path: "/admin/hrm/Employees",
         },
         {
-          title: "Recruitment",
+          title: "Attendance",
           icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Recruitment",
-        },
-        {
-          title: "Performance",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Performance",
-        },
-        {
-          title: "Reports",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Reports",
+          path: "/admin/hrm/Attendance",
         },
         {
           title: "Payroll",
           icon: <CheckBoxIcon />,
           path: "/admin/hrm/Payroll",
+        },
+        {
+          title: "Reports",
+          icon: <CheckBoxIcon />,
+          path: "/admin/hrm/Reports",
         },
         {
           title: "Settings",
