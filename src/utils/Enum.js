@@ -1,4 +1,4 @@
 export const USER_TYPES = {
-  STUDENT: "STUDENT",
+  ADMIN: "ADMIN",
   STAFF: "STAFF",
 };

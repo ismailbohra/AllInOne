@@ -20,7 +20,6 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Image } from "react-bootstrap";
 import logo from "../../assets/logo/dark-logo.svg";
-import "./navbar.scss";
 import Cbutton from "../Button/Cbutton";
 import AdminDrawerList from "./admin/admin";
 import { Outlet } from "react-router-dom";
