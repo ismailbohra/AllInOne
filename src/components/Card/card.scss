@@ -1,0 +1,11 @@
+.cardheader::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px; /* Adjust the width of the vertical line */
+    height: 100%;
+    background-color: #6FD943;
+  }
+  
