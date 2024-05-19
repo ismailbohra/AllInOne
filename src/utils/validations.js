@@ -568,3 +568,18 @@ export const defaultContainerValidation = Yup.object().shape({
     i18n.t("validationMsg.defaultContainer.required")
   ),
 });
+
+
+
+
+//current
+
+export const createEmployeeSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+});
+
+export const createShopSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+});

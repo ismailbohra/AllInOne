@@ -21,7 +21,7 @@ const Toaster = ({ toaster, hideToaster }) => {
         show={isOpen}
         delay={3000}
         autohide
-        bg={type === "error" ? "danger" : "success"}
+        style={{ backgroundColor: type === "error" ? "red" : "#6FD943"  , width:"200px" , textAlign:'center' , margin:"10px"}}
       >
         <Toast.Body>{message}</Toast.Body>
       </Toast>

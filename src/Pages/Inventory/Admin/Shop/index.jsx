@@ -1,9 +1,114 @@
-import React from 'react'
+import React from "react";
+import { bindActionCreators } from "redux";
 
-function AdminShop() {
+import {
+  fetchEmployees,
+  createEmployee,
+  updateEmployee,
+  deleteEmployee,
+} from "../../../../redux/employee/EmployeeAction";
+import CrudMaterialReactTable from "../../../../components/Table/CrudMaterialReactTable";
+import { connect } from "react-redux";
+import { createEmployeeSchema } from "../../../../utils/validations";
+import { Container } from "@mui/material";
+import CustomCard from "../../../../components/Card/CustomCard";
+
+// const validateEmployee = (values) => {
+//   const errors = {};
+//   if (!values.name) errors.name = "Name is required";
+//   if (!values.email) errors.email = "Email is required";
+//   return errors;
+// };
+
+function AdminShop(props) {
+  const [validationErrors, setValidationErrors] = React.useState({});
+
+  const validateEmployee = async (values) => {
+    try {
+      await createEmployeeSchema.validate(values, { abortEarly: false });
+      setValidationErrors({});
+    } catch (errors) {
+      console.log(typeof errors.inner);
+      const validationErrors = {};
+      errors.inner.forEach((error) => {
+        validationErrors[error.path] = error.message;
+      });
+      console.log(validationErrors);
+      setValidationErrors(validationErrors);
+    }
+  };
+
+  const employeelist = ["ismail", "mufaddal", "hussain"];
+
+  const shopColumn = [
+    {
+      accessorKey: "id",
+      header: "Shop ID",
+      enableEditing: false,
+      size: 80,
+    },
+    {
+      accessorKey: "name",
+      header: "Name",
+      muiEditTextFieldProps: {
+        required: true,
+        error: !!validationErrors?.name,
+        helperText: validationErrors?.name,
+        onFocus: () =>
+          setValidationErrors({
+            ...validationErrors,
+            name: undefined,
+          }),
+      },
+    },
+    { accessorKey: "address", header: "Address" },
+    {
+      accessorKey: "admin",
+      header: "Admin",
+      editVariant: "select",
+      editSelectOptions: employeelist,
+    },
+  ];
+
   return (
-    <div>AdminShop</div>
-  )
+    <Container>
+      <CustomCard
+        title="Shop"
+        nopadding={true}
+        titleproperty={{
+          variant: "h5",
+          padding: 2,
+          paddingLeft: 3,
+          fontSize: 20,
+          fontWeight: 800,
+        }}
+        divider={0}
+        element={
+          <CrudMaterialReactTable
+            fetchAction={props.fetchEmployees}
+            createAction={props.createEmployee}
+            updateAction={props.updateEmployee}
+            deleteAction={props.deleteEmployee}
+            selector={(state) => state.Employee}
+            columns={shopColumn}
+            validate={validateEmployee}
+            renderCreateDialogTitle={() => "Create New Shop"}
+            renderEditDialogTitle={() => "Edit Shop"}
+            setValidationErrors={setValidationErrors}
+          />
+        }
+      />
+    </Container>
+  );
 }
 
-export default AdminShop
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchEmployees: bindActionCreators(fetchEmployees, dispatch),
+  createEmployee: bindActionCreators(createEmployee, dispatch),
+  updateEmployee: bindActionCreators(updateEmployee, dispatch),
+  deleteEmployee: bindActionCreators(deleteEmployee, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminShop);

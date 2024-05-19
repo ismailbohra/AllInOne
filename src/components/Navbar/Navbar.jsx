@@ -10,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Image } from "react-bootstrap";
-import logo from "../../assets/logo/dark-logo.svg";
+import logo from "../../assets/logo/logo.png";
 import Cbutton from "../Button/Cbutton";
 import AdminDrawerList from "./admin/admin";
 import { Outlet } from "react-router-dom";
@@ -22,12 +22,14 @@ const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "open" && prop !== "windowsize",
 })(({ theme, open, windowsize }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  paddingTop: theme.spacing(3),
+  paddingBottom: theme.spacing(3),
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
+    width: `calc(100% - 280px)`,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -54,6 +56,7 @@ const AppBar = styled(MuiAppBar, {
   background: "white",
   boxShadow: "none",
   borderBottom: "2px solid black",
+  zIndex:20
 }));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -119,7 +122,7 @@ export default function PersistentDrawerLeft() {
       </AppBar>
       <Drawer
         sx={{
-          ...(open && {width: drawerWidth}),
+          ...(open && { width: drawerWidth }),
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             width: drawerWidth,
@@ -132,7 +135,12 @@ export default function PersistentDrawerLeft() {
         windowsize={windowsize}
       >
         <DrawerHeader>
-          <Image src={logo} />
+          <Box sx={{height:"100%"}} display={"flex"} justifyContent={"center"} width={"100%"}>
+            <Image
+              src={logo}
+              style={{ height: "100%", objectFit: "contain" }}
+            />
+          </Box>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />

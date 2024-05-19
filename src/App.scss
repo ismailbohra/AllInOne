@@ -3,6 +3,12 @@
 @import "./scss/colors";
 @import "./scss/variable";
 
+main{
+  @media screen and (max-width:600px) {
+    max-width: 100% ;
+  }
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0;
