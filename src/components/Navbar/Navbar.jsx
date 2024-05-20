@@ -15,6 +15,7 @@ import Cbutton from "../Button/Cbutton";
 import AdminDrawerList from "./admin/admin";
 import { Outlet } from "react-router-dom";
 import "./navbar.scss";
+import WarehouseAdminDrawerList from "./warehouse/WarehouseAdminDrawerList";
 
 const drawerWidth = 280;
 
@@ -56,8 +57,15 @@ const AppBar = styled(MuiAppBar, {
   background: "white",
   boxShadow: "none",
   borderBottom: "2px solid black",
-  zIndex:20
+  zIndex: 20,
 }));
+
+const CustomDrawer = styled(Drawer)({
+  overflowY: "hidden",
+  "&:hover": {
+    overflowY: "auto",
+  },
+});
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -128,6 +136,10 @@ export default function PersistentDrawerLeft() {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          overflowY: "hidden",
+          "&:hover": {
+            overflowY: "auto",
+          },
         }}
         variant={windowsize > 600 ? "persistent" : "temporary"}
         anchor="left"
@@ -135,7 +147,12 @@ export default function PersistentDrawerLeft() {
         windowsize={windowsize}
       >
         <DrawerHeader>
-          <Box sx={{height:"100%"}} display={"flex"} justifyContent={"center"} width={"100%"}>
+          <Box
+            sx={{ height: "100%" }}
+            display={"flex"}
+            justifyContent={"center"}
+            width={"100%"}
+          >
             <Image
               src={logo}
               style={{ height: "100%", objectFit: "contain" }}
@@ -149,7 +166,8 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
-        <AdminDrawerList />
+        {/* <AdminDrawerList handleDrawerClose={handleDrawerClose}/> */}
+        <WarehouseAdminDrawerList handleDrawerClose={handleDrawerClose}/>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />

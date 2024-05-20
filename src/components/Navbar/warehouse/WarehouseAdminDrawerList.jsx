@@ -7,7 +7,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminDrawerList({ handleDrawerClose }) {
+export default function WarehouseAdminDrawerList() {
   const [selectedIndex, setSelectedIndex] = React.useState("Inventory-Dashboard");
   const navigate = useNavigate();
 
@@ -18,62 +18,72 @@ export default function AdminDrawerList({ handleDrawerClose }) {
         {
           title: "Dashboard",
           icon: <AssignmentIcon />,
-          path: "/admin/inventory/dashboard",
+          path: "/warehouseAdmin/inventory/Dashboard",
         },
         {
-          title: "Team",
+          title: "Orders",
           icon: <AssignmentIcon />,
-          path: "/admin/inventory/Team",
+          path: "/warehouseAdmin/inventory/Orders",
         },
         {
-          title: "Shop",
-          icon: <CheckBoxIcon />,
-          path: "/admin/inventory/Shop",
+          title: "Suppliers",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/inventory/Suppliers",
         },
         {
-          title: "Warehouse",
-          icon: <CheckBoxIcon />,
-          path: "/admin/inventory/Warehouse",
+          title: "Stock Movement",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/inventory/StockMovement",
+        },
+        {
+          title: "Receiving",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/inventory/Receiving",
+        },
+        {
+          title: "Products",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/inventory/Products",
         },
       ],
     },
     {
-      title: "HRM System",
+      title: "HRM",
       items: [
-        { title: "Overview", icon: <AssignmentIcon />, path: "/admin/hrm/overview" },
         {
           title: "Employees",
           icon: <AssignmentIcon />,
-          path: "/admin/hrm/Employees",
+          path: "/warehouseAdmin/hrm/Employees",
         },
         {
           title: "Attendance",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Attendance",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/hrm/Attendance",
         },
         {
           title: "Payroll",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Payroll",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/hrm/Payroll",
         },
         {
-          title: "Reports",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Reports",
+          title: "Leave",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/hrm/Leave",
         },
+      ],
+    },
+    {
+      title: "Settings",
+      items: [
         {
-          title: "Settings",
-          icon: <CheckBoxIcon />,
-          path: "/admin/hrm/Settings",
+          title: "Warehouse Details",
+          icon: <AssignmentIcon />,
+          path: "/warehouseAdmin/settings/WarehouseDetails",
         },
       ],
     },
   ];
 
-  
-  const handleNavigation = (value, subitem, item) => {
-    navigate(value);
-  };
   React.useEffect(() => {
     const currentPath = window.location.pathname;
     for (const section of drawerItems) {
@@ -84,8 +94,13 @@ export default function AdminDrawerList({ handleDrawerClose }) {
         }
       }
     }
-  }, [handleNavigation]);
-  
+  }, []);
+
+  const handleNavigation = (value, subitem, item) => {
+    setSelectedIndex(`${item}-${subitem}`);
+    navigate(value);
+  };
+
   const btnSelected = {
     backgroundColor: "#6FD943",
     color: "#fff",

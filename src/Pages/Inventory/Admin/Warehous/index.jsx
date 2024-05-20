@@ -10,8 +10,8 @@ import {
 import CrudMaterialReactTable from "../../../../components/Table/CrudMaterialReactTable";
 import { connect } from "react-redux";
 import { createEmployeeSchema } from "../../../../utils/validations";
-
-
+import { Container } from "@mui/material";
+import CustomCard from "../../../../components/Card/CustomCard";
 
 function AdminWareHouse(props) {
   const [validationErrors, setValidationErrors] = React.useState({});
@@ -31,7 +31,7 @@ function AdminWareHouse(props) {
     }
   };
 
-  const employeelist = ['ismail','mufaddal','hussain'];
+  const employeelist = ["ismail", "mufaddal", "hussain"];
 
   const shopColumn = [
     {
@@ -59,23 +59,39 @@ function AdminWareHouse(props) {
       accessorKey: "admin",
       header: "Admin",
       editVariant: "select",
-      editSelectOptions: employeelist
+      editSelectOptions: employeelist,
     },
   ];
 
   return (
-    <CrudMaterialReactTable
-      fetchAction={props.fetchEmployees}
-      createAction={props.createEmployee}
-      updateAction={props.updateEmployee}
-      deleteAction={props.deleteEmployee}
-      selector={(state) => state.Employee}
-      columns={shopColumn}
-      validate={validateEmployee}
-      renderCreateDialogTitle={() => "Create New Shop"}
-      renderEditDialogTitle={() => "Edit Shop"}
-      setValidationErrors={setValidationErrors}
-    />
+    <Container>
+      <CustomCard
+        title="Warehouse"
+        nopadding={true}
+        titleproperty={{
+          variant: "h5",
+          padding: 2,
+          paddingLeft: 3,
+          fontSize: 20,
+          fontWeight: 800,
+        }}
+        divider={0}
+        element={
+          <CrudMaterialReactTable
+            fetchAction={props.fetchEmployees}
+            createAction={props.createEmployee}
+            updateAction={props.updateEmployee}
+            deleteAction={props.deleteEmployee}
+            selector={(state) => state.Employee}
+            columns={shopColumn}
+            validate={validateEmployee}
+            renderCreateDialogTitle={() => "Create New Shop"}
+            renderEditDialogTitle={() => "Edit Shop"}
+            setValidationErrors={setValidationErrors}
+          />
+        }
+      />
+    </Container>
   );
 }
 
