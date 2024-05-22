@@ -29,6 +29,7 @@ const CrudMaterialReactTable = ({
   renderCreateDialogTitle,
   renderEditDialogTitle,
   setValidationErrors,
+  iscreate=true
 }) => {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector(selector);
@@ -73,7 +74,7 @@ const CrudMaterialReactTable = ({
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        bgcolor:'#F8F9FD'
+        bgcolor: "#F8F9FD",
       },
     },
     enableRowNumbers: true,
@@ -137,15 +138,16 @@ const CrudMaterialReactTable = ({
         </Tooltip>
       </Box>
     ),
-    renderTopToolbarCustomActions: ({ table }) => (
-      <Button
-        variant="contained"
-        sx={{ bgcolor: "#6FD943" }}
-        onClick={() => table.setCreatingRow(true)}
-      >
-        Create New
-      </Button>
-    ),
+    renderTopToolbarCustomActions: ({ table }) =>
+      iscreate ? (
+        <Button
+          variant="contained"
+          sx={{ bgcolor: "#6FD943" }}
+          onClick={() => table.setCreatingRow(true)}
+        >
+          Create New
+        </Button>
+      ) : null,
     state: {
       isLoading: loading,
       showAlertBanner: error,
